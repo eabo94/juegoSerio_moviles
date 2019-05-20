@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
 Button btn_jugar,btn_repuestas,btn_info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

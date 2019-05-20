@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#fff"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Main2Activity">
@@ -10,83 +10,124 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:padding="10dp">
+
+
+
+        <ImageView
+            android:id="@+id/vida1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/vida"
+            />
+        <ImageView
+            android:id="@+id/vida2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/vida"
+            />
+        <ImageView
+            android:id="@+id/vida3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/vida"
+            />
 
         <TextView
+            android:id="@+id/vidas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Vidas:3"
-            android:id="@+id/vidas"
-            android:textColor="#028EFF"
+            android:textColor="#fff"
             android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="20dp"
-            />
-
+            android:textStyle="bold" />
         <TextView
-            android:id="@+id/cuenta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:textSize="20dp"
-
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Puntos:0"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="#008CFA"
             android:id="@+id/puntos"
-            android:layout_marginLeft="20dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Puntos:0"
+            android:textAlignment="textEnd"
+            android:textColor="#008CFA"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="INCORRECTO"
-        android:visibility="gone"
-        android:id="@+id/incorrecto"
-        android:textColor="#FF0000"
-        android:textSize="25dp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/cuentas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="61"
+            android:layout_gravity="center"
+            android:textColor="#028EFF"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/incorrecto"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:textSize="25dp"
-        android:id="@+id/correcto"
-        android:textColor="#21FA29"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
-        android:text="CORRECTO" />
+        android:text="INCORRECTO"
+        android:textColor="#FF0000"
+        android:textSize="25dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/correcto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:text="CORRECTO"
+        android:textColor="#21FA29"
+        android:textSize="25dp"
+        android:visibility="gone" />
 
     <ImageView
-    android:layout_width="250dp"
-    android:layout_height="350dp"
-    android:layout_marginTop="10dp"
-    android:src="@drawable/keep"
-    android:layout_weight="40"
         android:id="@+id/imagen"
-    android:layout_marginLeft="60dp"    />
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="ingrese el nombre"
-    android:layout_weight="1"
-    android:id="@+id/EditText"
-    />
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+
+        android:src="@drawable/keep" />
+
+    <EditText
+        android:id="@+id/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:hint="ingrese el nombre" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirmar"
-        android:id="@+id/confirmar"
-        android:layout_weight="1"
+        android:text="opcion1"
         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="opcion1"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="opcion1"
+        />
+
+    <Button
+        android:id="@+id/confirmar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirmar" />
 </LinearLayout>
