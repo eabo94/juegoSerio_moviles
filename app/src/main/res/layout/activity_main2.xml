@@ -101,6 +101,13 @@
         android:layout_gravity="center"
 
         android:src="@drawable/keep" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/preguntas"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
 
     <EditText
         android:id="@+id/EditText"

@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class Main2Activity extends AppCompatActivity {
 
-    TextView puntos, vidas, cuentas;
+    TextView puntos, vidas, cuentas,txtPreguntas;
     ImageView imageView, vida1, vida2, vida3;
     EditText editText;
     Button btnConfirmar;
@@ -24,6 +24,8 @@ public class Main2Activity extends AppCompatActivity {
     int contadorVidas = 3;
     String[] img = {"facebook", "google plus", "linkedin", "instagram", "periscope", "twitter", "whatsapp", "youtube"};
     String[] nom = {"img1", "img2", "in", "ins", "pe", "tw", "whats", "youtube"};
+    String[] preguntas={"Pregunta uno", "pregunta dos","pregunta tres","pregunta cuatro","Pregunta cinco", "pregunta seis","pregunta siete","pregunta ocho"};
+
     int numerogen = 0;
 
     Thread hilo;
@@ -38,6 +40,8 @@ public class Main2Activity extends AppCompatActivity {
         vida2 = findViewById(R.id.vida2);
         vida3 = findViewById(R.id.vida3);
 
+        txtPreguntas=findViewById(R.id.preguntas);
+
         puntos = findViewById(R.id.puntos);
         vidas = findViewById(R.id.vidas);
         cuentas = findViewById(R.id.cuentas);
@@ -47,6 +51,7 @@ public class Main2Activity extends AppCompatActivity {
         correcto = findViewById(R.id.correcto);
         incorrecto = findViewById(R.id.incorrecto);
 
+        txtPreguntas.setText(preguntas[numerogen]);
         establecer_img(numerogen);
         count = Integer.parseInt(cuentas.getText().toString());
 
@@ -170,6 +175,8 @@ public class Main2Activity extends AppCompatActivity {
                     cuentas.setText("");
                     editText.setText("");
                     establecer_img(numerogen);
+                    txtPreguntas.setText(preguntas[numerogen]);
+
                     correcto.setVisibility(View.INVISIBLE);
                     editText.setHint("Ingrese el nombre");
 
