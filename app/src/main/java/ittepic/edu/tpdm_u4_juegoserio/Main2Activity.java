@@ -8,29 +8,30 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.Random;
 
 public class Main2Activity extends AppCompatActivity {
 
-    TextView puntos, vidas, cuentas,txtPreguntas;
+    TextView puntos, vidas, cuentas, txtPreguntas;
     ImageView imageView, vida1, vida2, vida3;
-    EditText editText;
-    Button btnConfirmar, op1,op2,op3;
+    //EditText editText;
+    Button op1, op2, op3;
     TextView correcto, incorrecto;
     int contadorPuntos = 0;
     int count;
     int contadorVidas = 3;
-    String[] respuesta = {"alto voltaje", "baños", "cruce peatonal", "discapacidad", "enfermeria", "extintor", "manguera", "no  celular","no comida","prohibido el paso","punto de reunion","salida de emergencia"};
-    String[] respuesta2 = {"salida","reunion","prohibido ","pasar comida", "celular", "manguera", "extintor", "enfermeria","discapacidad","cruce peatonal","baños","voltaje" };
+    String[] respuesta = {"", "alto voltaje", "baños", "cruce peatonal", "discapacidad", "enfermeria", "extintor", "manguera", "no  celular", "no comida", "prohibido el paso", "punto de reunion", "salida de emergencia"};
+    String[] respuesta2 = {"", "salida", "reunion", "prohibido ", "pasar comida", "celular", "manguera", "extintor", "enfermeria", "discapacidad", "cruce peatonal", "baños", "voltaje"};
 
-    String[] nom = {"altovoltaje", "banos", "cruce", "discapacidad", "enfermeria", "extintor", "manguera", "nocel","nocomida","nopaso", "punto","salida"};
-    String[] preguntas={"Pregunta uno", "pregunta dos","pregunta tres","pregunta cuatro","Pregunta cinco", "pregunta seis","pregunta siete","pregunta ocho","pregunta nueve","pregunta diez","pregunta once","Pregunta doce"};
+    String[] nom = {"", "altovoltaje", "banos", "cruce", "discapacidad", "enfermeria", "extintor", "manguera", "nocel", "nocomida", "nopaso", "punto", "salida"};
+    String[] preguntas = {"¿Qué significa esta advertencia?", "pregunta dos", "pregunta tres", "pregunta cuatro", "Pregunta cinco", "pregunta seis", "pregunta siete", "pregunta ocho", "pregunta nueve", "pregunta diez", "pregunta once", "Pregunta doce"};
 
-    int numerogen = 0;
-
+    int numerogen = (int) (Math.random() * respuesta.length) + 1;
+    int[] resultado = new int[respuesta.length - 1];
+    int cursor = 0;
     Thread hilo;
 
     @Override
@@ -43,38 +44,40 @@ public class Main2Activity extends AppCompatActivity {
         vida2 = findViewById(R.id.vida2);
         vida3 = findViewById(R.id.vida3);
 
-        txtPreguntas=findViewById(R.id.preguntas);
+
+        txtPreguntas = findViewById(R.id.preguntas);
 
         puntos = findViewById(R.id.puntos);
         vidas = findViewById(R.id.vidas);
-        op1=findViewById(R.id.opcion1);
-        op2=findViewById(R.id.opcion2);
-        op3=findViewById(R.id.opcion3);
+        op1 = findViewById(R.id.opcion1);
+        op2 = findViewById(R.id.opcion2);
+        op3 = findViewById(R.id.opcion3);
         cuentas = findViewById(R.id.cuentas);
         imageView = findViewById(R.id.imagen);
-        editText = findViewById(R.id.EditText);
-        btnConfirmar = findViewById(R.id.confirmar);
         correcto = findViewById(R.id.correcto);
         incorrecto = findViewById(R.id.incorrecto);
 
-        op1.setText(respuesta[numerogen]);
-        op2.setText(respuesta[numerogen+2]);
-        op3.setText(respuesta[numerogen+1]);
+        op1.setText(respuesta[numerogen - 2]);
+        op2.setText(respuesta[numerogen]);
+        op3.setText(respuesta[numerogen + 1]);
+
         txtPreguntas.setText(preguntas[numerogen]);
         establecer_img(numerogen);
+
         count = Integer.parseInt(cuentas.getText().toString());
 
         op1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (op1.getText().toString()==respuesta[numerogen]){
+                if (op1.getText().toString() == respuesta[numerogen]) {
                     correcto.setVisibility(View.VISIBLE);
                     contadorPuntos = contadorPuntos + 1;
                     puntos.setText("puntos: " + contadorPuntos);
                     espera();
-                    numerogen=numerogen+1;
-                }else {
+                    //   numerogen = numerogen + 1;
+                    //asignarOpciones();
+                } else {
                     incorrecto.setVisibility(View.VISIBLE);
                     contadorVidas = contadorVidas - 1;
                     vida3.setVisibility(View.INVISIBLE);
@@ -88,20 +91,22 @@ public class Main2Activity extends AppCompatActivity {
                     }
 
                     vidas.setText("Vidas: " + contadorVidas);
-                    espera2();                }
+                    espera2();
+                }
 
             }
         });
         op2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (op2.getText().toString()==respuesta[numerogen]){
+                if (op2.getText().toString() == respuesta[numerogen]) {
                     correcto.setVisibility(View.VISIBLE);
                     contadorPuntos = contadorPuntos + 1;
                     puntos.setText("puntos: " + contadorPuntos);
                     espera();
-                    numerogen=numerogen+1;
-                }else {
+                    // numerogen = numerogen + 1;
+                    //asignarOpciones();
+                } else {
                     incorrecto.setVisibility(View.VISIBLE);
                     contadorVidas = contadorVidas - 1;
                     vida3.setVisibility(View.INVISIBLE);
@@ -124,13 +129,14 @@ public class Main2Activity extends AppCompatActivity {
         op3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (op2.getText().toString()==respuesta[numerogen]){
+                if (op2.getText().toString() == respuesta[numerogen]) {
                     correcto.setVisibility(View.VISIBLE);
                     contadorPuntos = contadorPuntos + 1;
                     puntos.setText("puntos: " + contadorPuntos);
                     espera();
-                    numerogen=numerogen+1;
-                }else {
+                    //asignarOpciones();
+                    //numerogen = numerogen + 1;
+                } else {
                     incorrecto.setVisibility(View.VISIBLE);
                     contadorVidas = contadorVidas - 1;
                     vida3.setVisibility(View.INVISIBLE);
@@ -189,9 +195,9 @@ public class Main2Activity extends AppCompatActivity {
 
                             @Override
                             public void run() {
-                                cuentas.setText(""+count);
+                                cuentas.setText("" + count);
 
-                                if(count <= 10){
+                                if (count <= 10) {
                                     cuentas.setTextColor(Color.RED);
                                     sonido();
                                 }
@@ -207,48 +213,132 @@ public class Main2Activity extends AppCompatActivity {
                     }
                 }
                 System.out.println("TERMINO");
+                count = -1;
                 Intent intent = new Intent(Main2Activity.this, MainActivity.class);
                 startActivity(intent);
+
             }
 
         };
         hilo.start();
-    }
+        //generarRandoms();
+    }// onCreate
+
+//    private void asignarOpciones() {
+//        numerogen = (int) (Math.random() * preguntas.length - 1) + 1;
+//        System.out.println("NUMERO GEN: " + numerogen + " Tamaño: " + (preguntas.length - 1));
+//        // mayores a 0
+//
+//        if (numerogen >= 7) {
+//            try {
+//                op1.setText(respuesta[numerogen - 2]);
+//                op2.setText(respuesta[numerogen]);
+//                op3.setText(respuesta[numerogen + 1]);
+//            } catch (RuntimeException e) {
+//                op2.setText(respuesta[(int) Math.random() * numerogen]);
+//                op1.setText(respuesta[(int) Math.random() * numerogen]);
+//                op3.setText(respuesta[numerogen]);
+//            }
+//        }
+//        if (numerogen >= 0 && numerogen <= 5) {
+//            op1.setText(respuesta[numerogen]);
+//            op2.setText(respuesta[numerogen + 2]);
+//            op3.setText(respuesta[numerogen + 1]);
+//        } else if (numerogen > 5 && numerogen <= 7) {
+//            op1.setText(respuesta[numerogen + 2]);
+//            op2.setText(respuesta[numerogen]);
+//            op3.setText(respuesta[numerogen + 1]);
+//        } else {
+//            try {
+//                op1.setText(respuesta[numerogen + 2]);
+//                op2.setText(respuesta[numerogen - 1]);
+//                op3.setText(respuesta[numerogen]);
+//            } catch (RuntimeException e) {
+//                op1.setText(respuesta[(int) Math.random() * numerogen]);
+//                op2.setText(respuesta[(int) Math.random() * numerogen]);
+//                op3.setText(respuesta[numerogen]);
+//            }
+//        }
+//
+//    }
 
 
     public void espera2() {
         new CountDownTimer(2000, 2000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                btnConfirmar.setVisibility(View.GONE);
+                //btnConfirmar.setVisibility(View.GONE);
+                op1.setEnabled(false);
+                op2.setEnabled(false);
+                op3.setEnabled(false);
             }
 
             @Override
             public void onFinish() {
                 if (contadorVidas <= 0) {
+                    count = -1;
                     Intent intent = new Intent(Main2Activity.this, MainActivity.class);
                     startActivity(intent);
 
                 } else {
 
-                    btnConfirmar.setVisibility(View.VISIBLE);
+                    //btnConfirmar.setVisibility(View.VISIBLE);
+                    op1.setEnabled(true);
+                    op2.setEnabled(true);
+                    op3.setEnabled(true);
                     incorrecto.setVisibility(View.INVISIBLE);
-                    editText.setText("");
-                    editText.setHint("Ingrese el nombre");
+                    // editText.setText("");
+                    //editText.setHint("Ingrese el nombre");
                 }
             }
         }.start();
 
     }
 
-    public void sonido(){
+    public void generarRandoms() {
+        int n = preguntas.length - 1;  //numeros aleatorios
+        int k = n;  //auxiliar;
+        int[] numeros = new int[n];
+
+        Random rnd = new Random();
+        int res;
+
+
+        //se rellena una matriz ordenada del 1 al 31(1..n)
+        for (int i = 0; i < n; i++) {
+            numeros[i] = i + 1;
+        }
+
+        for (int i = 0; i < n; i++) {
+            res = rnd.nextInt(k);
+            resultado[i] = numeros[res];
+            numeros[res] = numeros[k - 1];
+            k--;
+
+        }
+        //se imprime el resultado;
+        System.out.println("El resultado de la matriz es:");
+        for (int i = 0; i < n; i++) {
+            System.out.println(resultado[i]);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        System.out.println("TERMINA HILO");
+        count = -1;
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
+    }
+
+    public void sonido() {
         // Acceder al recurso de tipo sonido
 
-        MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.clic);
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.clic);
         mediaPlayer.start();
 
     }// sonido
-
 
 
     public void espera() {
@@ -256,30 +346,37 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 //  cuentas.setText(""+millisUntilFinished/1000+1);
-                btnConfirmar.setVisibility(View.GONE);
+                //btnConfirmar.setVisibility(View.GONE);
+                op1.setEnabled(false);
+                op2.setEnabled(false);
+                op3.setEnabled(false);
             }
 
             @Override
             public void onFinish() {
                 if (contadorVidas <= 0) {
+                    count = -1;
                     Intent intent = new Intent(Main2Activity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
-                    btnConfirmar.setVisibility(View.VISIBLE);
-                   // numerogen = numerogen + 1;
+                    // btnConfirmar.setVisibility(View.VISIBLE);
+                    // numerogen = numerogen + 1;
                     cuentas.setText("");
-                    editText.setText("");
+                    //  editText.setText("");
                     establecer_img(numerogen);
                     //op1.setText(respuesta[numerogen]);
 
                     txtPreguntas.setText(preguntas[numerogen]);
 
                     op1.setText(respuesta[numerogen]);
-                    op2.setText(respuesta2[(int) (Math.random()*10)+1]);
-                    op3.setText(respuesta2[(int) ((Math.random()*10)+1)+1]);
+                    op2.setText(respuesta2[(int) (Math.random() * 10) + 1]);
+                    op3.setText(respuesta2[(int) ((Math.random() * 10) + 1) + 1]);
 
                     correcto.setVisibility(View.INVISIBLE);
-                    editText.setHint("Ingrese el nombre");
+                    op1.setEnabled(true);
+                    op2.setEnabled(true);
+                    op3.setEnabled(true);
+                    //  editText.setHint("Ingrese el nombre");
 
                 }
             }
@@ -288,7 +385,7 @@ public class Main2Activity extends AppCompatActivity {
 
 
     public void establecer_img(int numero) {
-        int id = getResources().getIdentifier(nom[numero], "mipmap", getPackageName());
+        int id = getResources().getIdentifier(nom[numero], "drawable", getPackageName());
         imageView.setImageResource(id);
 
     }

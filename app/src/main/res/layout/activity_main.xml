@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="80dp"
         android:layout_marginTop="230dp"
+        android:background="@drawable/estructuraboton"
         android:text="Empezar" />
     <Button
         android:layout_width="match_parent"
@@ -32,6 +33,7 @@
         android:layout_marginTop="50dp"
         android:text="Aprender"
         android:id="@+id/aprender"
+        android:background="@drawable/estructuraboton"
         android:layout_marginHorizontal="80dp"
         />
     <Button
@@ -39,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Acerca de"
+        android:background="@drawable/estructuraboton"
         android:id="@+id/info"
         android:layout_marginHorizontal="80dp"
         />

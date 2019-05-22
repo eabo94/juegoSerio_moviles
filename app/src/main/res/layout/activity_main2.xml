@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="#fff"
+    android:padding="10dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Main2Activity">
@@ -96,8 +97,8 @@
 
     <ImageView
         android:id="@+id/imagen"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:src="@mipmap/altovoltaje"
          />
@@ -109,35 +110,26 @@
         android:textStyle="bold"
         />
 
-    <EditText
-        android:id="@+id/EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:hint="ingrese el nombre" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:background="@drawable/estructuraboton"
         android:id="@+id/opcion1"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:background="@drawable/estructuraboton"
         android:id="@+id/opcion2"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:background="@drawable/estructuraboton"
         android:id="@+id/opcion3"
         />
 
-    <Button
-        android:id="@+id/confirmar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Confirmar" />
+
 </LinearLayout>
