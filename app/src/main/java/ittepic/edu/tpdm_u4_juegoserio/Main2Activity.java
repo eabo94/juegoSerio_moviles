@@ -23,13 +23,13 @@ public class Main2Activity extends AppCompatActivity {
     int contadorPuntos = 0;
     int count;
     int contadorVidas = 3;
-    String[] respuesta = {"", "alto voltaje", "baños", "cruce peatonal", "discapacidad", "enfermeria", "extintor", "manguera", "no  celular", "no comida", "prohibido el paso", "punto de reunion", "salida de emergencia"};
-    String[] respuesta2 = {"", "salida", "reunion", "prohibido ", "pasar comida", "celular", "manguera", "extintor", "enfermeria", "discapacidad", "cruce peatonal", "baños", "voltaje"};
+    String[] respuesta = { "alto voltaje", "baños", "cruce peatonal", "discapacidad", "enfermeria", "extintor", "manguera", "no  celular", "no comida", "prohibido el paso", "punto de reunion", "salida de emergencia"};
+    String[] respuesta2 = {"limite de velocidad", "cruce de tren", "cruce de animales ", "curva peligrosa", "retorno", "no estacionbarse", "topes", "semaforo", "escuela", "Alto", "prohibido mascotas", "prohibido fumar"};
 
-    String[] nom = {"", "altovoltaje", "banos", "cruce", "discapacidad", "enfermeria", "extintor", "manguera", "nocel", "nocomida", "nopaso", "punto", "salida"};
+    String[] nom = { "altovoltaje", "banos", "cruce", "discapacidad", "enfermeria", "extintor", "manguera", "nocel", "nocomida", "nopaso", "punto", "salida"};
     String[] preguntas = {"¿Qué significa esta advertencia?", "pregunta dos", "pregunta tres", "pregunta cuatro", "Pregunta cinco", "pregunta seis", "pregunta siete", "pregunta ocho", "pregunta nueve", "pregunta diez", "pregunta once", "Pregunta doce"};
 
-    int numerogen = (int) (Math.random() * respuesta.length) + 1;
+    int numerogen = 0;
     int[] resultado = new int[respuesta.length - 1];
     int cursor = 0;
     Thread hilo;
@@ -57,15 +57,14 @@ public class Main2Activity extends AppCompatActivity {
         correcto = findViewById(R.id.correcto);
         incorrecto = findViewById(R.id.incorrecto);
 
-        op1.setText(respuesta[numerogen - 2]);
-        op2.setText(respuesta[numerogen]);
-        op3.setText(respuesta[numerogen + 1]);
+
+
 
         txtPreguntas.setText(preguntas[numerogen]);
         establecer_img(numerogen);
 
         count = Integer.parseInt(cuentas.getText().toString());
-
+        respuestasRan((int)(Math.random()*3)+1);
         op1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +74,7 @@ public class Main2Activity extends AppCompatActivity {
                     contadorPuntos = contadorPuntos + 1;
                     puntos.setText("puntos: " + contadorPuntos);
                     espera();
-                    //   numerogen = numerogen + 1;
+                     numerogen = numerogen + 1;
                     //asignarOpciones();
                 } else {
                     incorrecto.setVisibility(View.VISIBLE);
@@ -104,7 +103,7 @@ public class Main2Activity extends AppCompatActivity {
                     contadorPuntos = contadorPuntos + 1;
                     puntos.setText("puntos: " + contadorPuntos);
                     espera();
-                    // numerogen = numerogen + 1;
+                    numerogen = numerogen + 1;
                     //asignarOpciones();
                 } else {
                     incorrecto.setVisibility(View.VISIBLE);
@@ -129,13 +128,13 @@ public class Main2Activity extends AppCompatActivity {
         op3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (op2.getText().toString() == respuesta[numerogen]) {
+                if (op3.getText().toString() == respuesta[numerogen]) {
                     correcto.setVisibility(View.VISIBLE);
                     contadorPuntos = contadorPuntos + 1;
                     puntos.setText("puntos: " + contadorPuntos);
                     espera();
                     //asignarOpciones();
-                    //numerogen = numerogen + 1;
+                    numerogen = numerogen + 1;
                 } else {
                     incorrecto.setVisibility(View.VISIBLE);
                     contadorVidas = contadorVidas - 1;
@@ -262,7 +261,55 @@ public class Main2Activity extends AppCompatActivity {
 //
 //    }
 
+    public void respuestasRan(int numero){
 
+        System.out.println("NUMERO ALEATORIO: "+numero);
+        switch (numero){
+
+            case 1:
+                if (numero==1){
+                    try{
+                        op1.setText(respuesta[numerogen]);
+                        op2.setText(respuesta2[numerogen]);
+                        op3.setText(respuesta2[numerogen+1]);
+                    }catch (ArrayIndexOutOfBoundsException e){
+                        op1.setText(respuesta[numerogen]);
+                        op2.setText(respuesta2[numerogen]);
+                        op3.setText(respuesta2[numerogen-1]);
+                    }
+
+                }
+                break;
+            case 2:
+                if (numero==2){
+                    try {
+                        op1.setText(respuesta2[numerogen]);
+                        op2.setText(respuesta[numerogen]);
+                        op3.setText(respuesta2[numerogen + 1]);
+                    }catch (ArrayIndexOutOfBoundsException e){
+                        op1.setText(respuesta2[numerogen]);
+                        op2.setText(respuesta[numerogen]);
+                        op3.setText(respuesta2[numerogen-1]);
+                    }
+                }
+                break;
+            case 3:
+                if (numero==3){
+                    try {
+                        op1.setText(respuesta2[numerogen]);
+                        op2.setText(respuesta2[numerogen + 1]);
+                        op3.setText(respuesta[numerogen]);
+                    }catch (ArrayIndexOutOfBoundsException e){
+                        op1.setText(respuesta2[numerogen]);
+                        op2.setText(respuesta2[numerogen-1]);
+                        op3.setText(respuesta[numerogen]);
+                    }
+                }
+                break;
+
+        }
+
+    }
     public void espera2() {
         new CountDownTimer(2000, 2000) {
             @Override
@@ -294,6 +341,7 @@ public class Main2Activity extends AppCompatActivity {
         }.start();
 
     }
+
 
     public void generarRandoms() {
         int n = preguntas.length - 1;  //numeros aleatorios
@@ -347,9 +395,11 @@ public class Main2Activity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 //  cuentas.setText(""+millisUntilFinished/1000+1);
                 //btnConfirmar.setVisibility(View.GONE);
+                respuestasRan((int)(Math.random()*3)+1);
                 op1.setEnabled(false);
                 op2.setEnabled(false);
                 op3.setEnabled(false);
+
             }
 
             @Override
@@ -364,13 +414,13 @@ public class Main2Activity extends AppCompatActivity {
                     cuentas.setText("");
                     //  editText.setText("");
                     establecer_img(numerogen);
-                    //op1.setText(respuesta[numerogen]);
+//                    op1.setText(respuesta[numerogen]);
 
                     txtPreguntas.setText(preguntas[numerogen]);
 
-                    op1.setText(respuesta[numerogen]);
-                    op2.setText(respuesta2[(int) (Math.random() * 10) + 1]);
-                    op3.setText(respuesta2[(int) ((Math.random() * 10) + 1) + 1]);
+//                    op1.setText(respuesta[numerogen]);
+//                    op2.setText(respuesta2[(int) (Math.random() * 10) + 1]);
+//                    op3.setText(respuesta2[(int) ((Math.random() * 10) + 1) + 1]);
 
                     correcto.setVisibility(View.INVISIBLE);
                     op1.setEnabled(true);
