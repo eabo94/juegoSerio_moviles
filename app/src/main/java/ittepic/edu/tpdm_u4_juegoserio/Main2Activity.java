@@ -11,20 +11,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Main2Activity extends AppCompatActivity {
 
     TextView puntos, vidas, cuentas,txtPreguntas;
     ImageView imageView, vida1, vida2, vida3;
     EditText editText;
-    Button btnConfirmar;
+    Button btnConfirmar, op1,op2,op3;
     TextView correcto, incorrecto;
     int contadorPuntos = 0;
     int count;
     int contadorVidas = 3;
-    String[] img = {"facebook", "google plus", "linkedin", "instagram", "periscope", "twitter", "whatsapp", "youtube"};
-    String[] nom = {"img1", "img2", "in", "ins", "pe", "tw", "whats", "youtube"};
-    String[] preguntas={"Pregunta uno", "pregunta dos","pregunta tres","pregunta cuatro","Pregunta cinco", "pregunta seis","pregunta siete","pregunta ocho"};
+    String[] respuesta = {"alto voltaje", "baños", "cruce peatonal", "discapacidad", "enfermeria", "extintor", "manguera", "no  celular","no comida","prohibido el paso","punto de reunion","salida de emergencia"};
+    String[] respuesta2 = {"salida","reunion","prohibido ","pasar comida", "celular", "manguera", "extintor", "enfermeria","discapacidad","cruce peatonal","baños","voltaje" };
+
+    String[] nom = {"altovoltaje", "banos", "cruce", "discapacidad", "enfermeria", "extintor", "manguera", "nocel","nocomida","nopaso", "punto","salida"};
+    String[] preguntas={"Pregunta uno", "pregunta dos","pregunta tres","pregunta cuatro","Pregunta cinco", "pregunta seis","pregunta siete","pregunta ocho","pregunta nueve","pregunta diez","pregunta once","Pregunta doce"};
 
     int numerogen = 0;
 
@@ -44,6 +47,9 @@ public class Main2Activity extends AppCompatActivity {
 
         puntos = findViewById(R.id.puntos);
         vidas = findViewById(R.id.vidas);
+        op1=findViewById(R.id.opcion1);
+        op2=findViewById(R.id.opcion2);
+        op3=findViewById(R.id.opcion3);
         cuentas = findViewById(R.id.cuentas);
         imageView = findViewById(R.id.imagen);
         editText = findViewById(R.id.EditText);
@@ -51,11 +57,98 @@ public class Main2Activity extends AppCompatActivity {
         correcto = findViewById(R.id.correcto);
         incorrecto = findViewById(R.id.incorrecto);
 
+        op1.setText(respuesta[numerogen]);
+        op2.setText(respuesta[numerogen+2]);
+        op3.setText(respuesta[numerogen+1]);
         txtPreguntas.setText(preguntas[numerogen]);
         establecer_img(numerogen);
         count = Integer.parseInt(cuentas.getText().toString());
 
-        btnConfirmar.setOnClickListener(new View.OnClickListener() {
+        op1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (op1.getText().toString()==respuesta[numerogen]){
+                    correcto.setVisibility(View.VISIBLE);
+                    contadorPuntos = contadorPuntos + 1;
+                    puntos.setText("puntos: " + contadorPuntos);
+                    espera();
+                    numerogen=numerogen+1;
+                }else {
+                    incorrecto.setVisibility(View.VISIBLE);
+                    contadorVidas = contadorVidas - 1;
+                    vida3.setVisibility(View.INVISIBLE);
+
+                    if (vidas.getText().equals("Vidas: 2")) {
+                        vida2.setVisibility(View.INVISIBLE);
+                    }
+
+                    if (vidas.getText().equals("Vidas: 1")) {
+                        vida1.setVisibility(View.INVISIBLE);
+                    }
+
+                    vidas.setText("Vidas: " + contadorVidas);
+                    espera2();                }
+
+            }
+        });
+        op2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (op2.getText().toString()==respuesta[numerogen]){
+                    correcto.setVisibility(View.VISIBLE);
+                    contadorPuntos = contadorPuntos + 1;
+                    puntos.setText("puntos: " + contadorPuntos);
+                    espera();
+                    numerogen=numerogen+1;
+                }else {
+                    incorrecto.setVisibility(View.VISIBLE);
+                    contadorVidas = contadorVidas - 1;
+                    vida3.setVisibility(View.INVISIBLE);
+
+                    if (vidas.getText().equals("Vidas: 2")) {
+                        vida2.setVisibility(View.INVISIBLE);
+                    }
+
+                    if (vidas.getText().equals("Vidas: 1")) {
+                        vida1.setVisibility(View.INVISIBLE);
+                    }
+
+                    vidas.setText("Vidas: " + contadorVidas);
+                    espera2();
+                }
+
+
+            }
+        });
+        op3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (op2.getText().toString()==respuesta[numerogen]){
+                    correcto.setVisibility(View.VISIBLE);
+                    contadorPuntos = contadorPuntos + 1;
+                    puntos.setText("puntos: " + contadorPuntos);
+                    espera();
+                    numerogen=numerogen+1;
+                }else {
+                    incorrecto.setVisibility(View.VISIBLE);
+                    contadorVidas = contadorVidas - 1;
+                    vida3.setVisibility(View.INVISIBLE);
+
+                    if (vidas.getText().equals("Vidas: 2")) {
+                        vida2.setVisibility(View.INVISIBLE);
+                    }
+
+                    if (vidas.getText().equals("Vidas: 1")) {
+                        vida1.setVisibility(View.INVISIBLE);
+                    }
+
+                    vidas.setText("Vidas: " + contadorVidas);
+                    espera2();
+                }
+            }
+        });
+      /*  btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String respuesta = editText.getText().toString().toLowerCase();
@@ -85,6 +178,7 @@ public class Main2Activity extends AppCompatActivity {
                 }
             }
         });
+      */
         hilo = new Thread() {
             @Override
             public void run() {
@@ -120,6 +214,7 @@ public class Main2Activity extends AppCompatActivity {
         };
         hilo.start();
     }
+
 
     public void espera2() {
         new CountDownTimer(2000, 2000) {
@@ -171,11 +266,17 @@ public class Main2Activity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     btnConfirmar.setVisibility(View.VISIBLE);
-                    numerogen = numerogen + 1;
+                   // numerogen = numerogen + 1;
                     cuentas.setText("");
                     editText.setText("");
                     establecer_img(numerogen);
+                    //op1.setText(respuesta[numerogen]);
+
                     txtPreguntas.setText(preguntas[numerogen]);
+
+                    op1.setText(respuesta[numerogen]);
+                    op2.setText(respuesta2[(int) (Math.random()*10)+1]);
+                    op3.setText(respuesta2[(int) ((Math.random()*10)+1)+1]);
 
                     correcto.setVisibility(View.INVISIBLE);
                     editText.setHint("Ingrese el nombre");
