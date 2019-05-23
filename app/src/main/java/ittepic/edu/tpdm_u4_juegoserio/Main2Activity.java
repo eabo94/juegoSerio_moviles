@@ -23,7 +23,7 @@ public class Main2Activity extends AppCompatActivity {
     int contadorPuntos = 0;
     int count;
     int contadorVidas = 3;
-    String[] respuesta = { "alto voltaje", "baños", "cruce peatonal", "discapacidad", "enfermeria", "extintor", "manguera", "no  celular", "no comida", "prohibido el paso", "punto de reunion", "salida de emergencia"};
+    String[] respuesta = { "alto voltaje", "baños", "cruce peatonal", "discapacitados", "enfermeria", "extintor", "manguera", "no  celular", "no comida", "prohibido el paso", "punto de reunion", "salida de emergencia"};
     String[] respuesta2 = {"limite de velocidad", "cruce de tren", "cruce de animales ", "curva peligrosa", "retorno", "no estacionbarse", "topes", "semaforo", "escuela", "Alto", "prohibido mascotas", "prohibido fumar"};
 
     String[] nom = { "altovoltaje", "banos", "cruce", "discapacidad", "enfermeria", "extintor", "manguera", "nocel", "nocomida", "nopaso", "punto", "salida"};
